@@ -1,0 +1,1 @@
+export const MenuLink : {url: string,title: string,}[]=[{}]
