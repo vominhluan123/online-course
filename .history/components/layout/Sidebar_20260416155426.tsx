@@ -1,6 +1,6 @@
 import { MenuLinks } from "@/constants";
 import ActiveLink from "../Active/ActiveLink";
-import { MenuLinkProps } from "../types";
+import { MenuLink } from "../types";
 
 const Sidebar = () => {
   return (
@@ -14,7 +14,7 @@ const Sidebar = () => {
           const Icon = item.icon;
 
           return (
-            <MenuLink
+            <MenuLinks
               key={index}
               url={item.url}
               title={item.title}
@@ -26,7 +26,7 @@ const Sidebar = () => {
     </nav>
   );
 };
-function MenuLink({ url = "/", title = "", icon }: MenuLinkProps) {
+function MenuLinks({ url = "/", title = "", icon }: MenuLink) {
   return (
     <li>
       <ActiveLink url={url}>

@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+  font-family: var(--font-body);
+}
+
+@layer components {
+  .svg-animate
+}

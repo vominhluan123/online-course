@@ -1,6 +1,5 @@
 import { MenuLinks } from "@/constants";
-import ActiveLink from "../Active/ActiveLink";
-import { MenuLinkProps } from "../types";
+import Link from "next/link";
 
 const Sidebar = () => {
   return (
@@ -26,14 +25,15 @@ const Sidebar = () => {
     </nav>
   );
 };
-function MenuLink({ url = "/", title = "", icon }: MenuLinkProps) {
-  return (
-    <li>
-      <ActiveLink url={url}>
-        {icon}
-        {title}
-      </ActiveLink>
-    </li>
-  );
+function MenuLink({
+  url = "/",
+  title = "",
+  icon,
+}: {
+  url: string;
+  title: string;
+  icon?: React.ReactNode;
+}) {
+  return <li><ActiveLink></ActiveLink></li>;
 }
 export default Sidebar;

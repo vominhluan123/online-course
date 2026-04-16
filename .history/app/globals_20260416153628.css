@@ -11,9 +11,4 @@ body {
     stroke-dasharray: 100;
     animation: dash 3s linear forwards;
   }
-  @keyframes dash {
-    to {
-      stroke-dashoffset: 0;
-    }
-  }
 }

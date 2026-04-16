@@ -1,7 +1,10 @@
-import { IconExplore, IconPlay } from "@/components/icons";
-import { PathNameLink } from "@/components/types";
+import { ComponentProps } from "react";
 
-export const MenuLinks: PathNameLink[] = [
+export const MenuLinks: {
+  url: string;
+  title: string;
+  icon: React.ComponentType<ComponentProps<"svg">>;
+}[] = [
   {
     url: "/",
     title: "Khu vực học tập",

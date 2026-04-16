@@ -1,6 +1,6 @@
 import { MenuLinks } from "@/constants";
 import ActiveLink from "../Active/ActiveLink";
-import { MenuLinkProps } from "../types";
+import { MenuLink, MenuLinkProps } from "../types";
 
 const Sidebar = () => {
   return (
