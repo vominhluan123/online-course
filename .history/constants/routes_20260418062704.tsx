@@ -1,11 +1,5 @@
-import {
-  IconExplore,
-  IconOrder,
-  IconPlay,
-  IconUsers,
-  IconComment,
-  IconCourse,
-} from "@/components/icons";
+import { IconExplore, IconPlay, IconUsers } from "@/components/icons";
+import IconCourse from "@/components/icons/IconCourse";
 import { PathNameLink } from "@/components/types";
 
 export const MenuLinks: PathNameLink[] = [
@@ -32,11 +26,11 @@ export const MenuLinks: PathNameLink[] = [
   {
     url: "/manage/order",
     title: "Quản lý đơn hàng",
-    icon: IconOrder,
+    icon: IconExplore,
   },
   {
     url: "/manage/comment",
     title: "Quản lý bình luận",
-    icon: IconComment,
+    icon: IconExplore,
   },
 ];

@@ -4,8 +4,9 @@ import {
   IconPlay,
   IconUsers,
   IconComment,
-  IconCourse,
 } from "@/components/icons";
+import IconComment from "@/components/icons/IconComment";
+import IconCourse from "@/components/icons/IconCourse";
 import { PathNameLink } from "@/components/types";
 
 export const MenuLinks: PathNameLink[] = [
