@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { IconStar } from "../icons";
 
-const CourseItems = () => {
+const CourseItem = () => {
   const CourseInfo = [
     {
       title: "5.0",
@@ -58,4 +58,4 @@ const CourseItems = () => {
   );
 };
 
-export default CourseItems;
+export default CourseItem;

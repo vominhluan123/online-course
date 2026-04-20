@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { IconStar } from "../icons";
 
-const CourseItems = () => {
+const CourseItem = () => {
   const CourseInfo = [
     {
       title: "5.0",
@@ -39,6 +39,9 @@ const CourseItems = () => {
           ))}
         </div>
         <p className="font-bold text-lg mb-5 text-primary">Khoá học Nextjs</p>
+        <p className="font-bold text-lg mb-5 text-primary">Khoá học Nextjs</p>
+        <p className="font-bold text-lg mb-5 text-primary">Khoá học Nextjs</p>
+        <p className="font-bold text-lg mb-5 text-primary">Khoá học Nextjs</p>
         <div className="flex items-center justify-between mt-auto">
           <span className="text-sm py-1 text-muted-foreground px-3 bg-muted rounded-full">
             30h20p
@@ -58,4 +61,4 @@ const CourseItems = () => {
   );
 };
 
-export default CourseItems;
+export default CourseItem;

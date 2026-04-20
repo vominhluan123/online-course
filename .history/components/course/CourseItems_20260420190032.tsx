@@ -26,7 +26,7 @@ const CourseItems = () => {
           new
         </span>
       </Link>
-      <div className="pt-4 text-muted-foreground  flex-1 flex flex-col">
+      <div className="pt-4 text-muted-foreground bg-destructive flex-1">
         <div className="flex items-center justify-end">
           {CourseInfo.map((item, index) => (
             <div
@@ -39,7 +39,7 @@ const CourseItems = () => {
           ))}
         </div>
         <p className="font-bold text-lg mb-5 text-primary">Khoá học Nextjs</p>
-        <div className="flex items-center justify-between mt-auto">
+        <div className="flex items-center justify-between">
           <span className="text-sm py-1 text-muted-foreground px-3 bg-muted rounded-full">
             30h20p
           </span>

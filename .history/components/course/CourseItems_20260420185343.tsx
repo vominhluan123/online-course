@@ -10,7 +10,7 @@ const CourseItems = () => {
     },
   ];
   return (
-    <div className="bg-card border text-card-foreground p-4 rounded-2xl border-border flex flex-col">
+    <div className="bg-card border text-card-foreground p-4 rounded-2xl border-border flex">
       <Link href="#" className="block relative aspect-video">
         <Image
           src="https://plus.unsplash.com/premium_photo-1668485966810-cbd0f685f58f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Z2lybHxlbnwwfHwwfHx8MA%3D%3D"
@@ -26,7 +26,7 @@ const CourseItems = () => {
           new
         </span>
       </Link>
-      <div className="pt-4 text-muted-foreground  flex-1 flex flex-col">
+      <div className="pt-4 text-muted-foreground">
         <div className="flex items-center justify-end">
           {CourseInfo.map((item, index) => (
             <div
@@ -39,7 +39,7 @@ const CourseItems = () => {
           ))}
         </div>
         <p className="font-bold text-lg mb-5 text-primary">Khoá học Nextjs</p>
-        <div className="flex items-center justify-between mt-auto">
+        <div className="flex items-center justify-between">
           <span className="text-sm py-1 text-muted-foreground px-3 bg-muted rounded-full">
             30h20p
           </span>

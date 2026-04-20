@@ -39,6 +39,7 @@ const CourseItems = () => {
           ))}
         </div>
         <p className="font-bold text-lg mb-5 text-primary">Khoá học Nextjs</p>
+        <p className="font-bold text-lg mb-5 text-primary">Khoá học Nextjs</p>
         <div className="flex items-center justify-between mt-auto">
           <span className="text-sm py-1 text-muted-foreground px-3 bg-muted rounded-full">
             30h20p
