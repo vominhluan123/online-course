@@ -3,8 +3,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ActieveLink } from "../types";
 
-const ActiveLink = ({ children, url }: ActieveLink) => {
-  const Pathname = usePathname();
+const NavLink = ({ children, url }: ActieveLink) => {
+  const pathname = usePathname();
   const isActive = url === Pathname;
   return (
     <Link
@@ -17,4 +17,4 @@ const ActiveLink = ({ children, url }: ActieveLink) => {
   );
 };
 
-export default ActiveLink;
+export default NavLink;
