@@ -8,6 +8,6 @@ export default async function createUser(params: CreateUserInput) {
     const newUser = await User.create(params);
     return newUser;
   } catch (error) {
-    console.log(error);
+    clg
   }
 }

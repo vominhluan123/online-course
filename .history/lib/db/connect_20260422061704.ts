@@ -27,7 +27,7 @@ export const ConnectToDatabase = async () => {
     console.log("🚀 Tạo connection mới...");
 
     connectingPromise = mongoose.connect(url, {
-      dbName: "Khoa-hoc",
+      dbName: "Khoa-hoc-onlien",
     });
 
     connection = await connectingPromise;

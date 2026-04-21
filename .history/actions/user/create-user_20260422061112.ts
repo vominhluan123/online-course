@@ -7,7 +7,5 @@ export default async function createUser(params: CreateUserInput) {
     ConnectToDatabase();
     const newUser = await User.create(params);
     return newUser;
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 }

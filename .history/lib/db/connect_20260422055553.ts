@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+  import mongoose from "mongoose";
 
 const url = process.env.MONGODB_URL;
 
@@ -27,7 +27,7 @@ export const ConnectToDatabase = async () => {
     console.log("🚀 Tạo connection mới...");
 
     connectingPromise = mongoose.connect(url, {
-      dbName: "Khoa-hoc",
+      dbName: "Khoa-hoc-online",
     });
 
     connection = await connectingPromise;

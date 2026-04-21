@@ -6,8 +6,7 @@ export default async function Home() {
   const user = await createUser({
     clerkId: "1234",
     email_address: "luan@gmail.com",
-    username: "llilkha",
-    name: "luan",
+    
   });
   return (
     <>

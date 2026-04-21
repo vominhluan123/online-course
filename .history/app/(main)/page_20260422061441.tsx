@@ -7,8 +7,7 @@ export default async function Home() {
     clerkId: "1234",
     email_address: "luan@gmail.com",
     username: "llilkha",
-    name: "luan",
-  });
+  name: 'luan'});
   return (
     <>
       <CourseGird>

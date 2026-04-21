@@ -3,12 +3,7 @@ import CourseItems from "@/components/course/CourseItems";
 import { CourseGird } from "@/components/ui";
 
 export default async function Home() {
-  const user = await createUser({
-    clerkId: "1234",
-    email_address: "luan@gmail.com",
-    username: "llilkha",
-    name: "luan",
-  });
+  const user = await createUser
   return (
     <>
       <CourseGird>
