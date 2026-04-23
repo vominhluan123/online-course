@@ -17,16 +17,7 @@ const Header = () => {
         {/* RIGHT */}
         <div className="flex items-center gap-5">
           <ModeToggle></ModeToggle>
-          {userId ? (
-            <UserButton />
-          ) : (
-            <Link
-              href="/sign-in"
-              className="font-heading bg-primary text-primary-foreground rounded-full px-6 py-3"
-            >
-              Đăng nhập
-            </Link>
-          )}
+          {userId ? <UserButton /> : <Link href="/sign-in"></Link>}
         </div>
       </div>
     </header>

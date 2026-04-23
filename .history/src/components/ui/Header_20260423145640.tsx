@@ -22,7 +22,7 @@ const Header = () => {
           ) : (
             <Link
               href="/sign-in"
-              className="font-heading bg-primary text-primary-foreground rounded-full px-6 py-3"
+              className="font-heading bg-primary text-primary-foreground"
             >
               Đăng nhập
             </Link>

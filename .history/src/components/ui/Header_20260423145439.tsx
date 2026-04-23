@@ -1,10 +1,9 @@
-"use client";
-import { useAuth, UserButton } from "@clerk/nextjs";
-import Link from "next/link";
+'use client'
+import { UserButton } from "@clerk/nextjs";
 import { ModeToggle } from "./Toogle";
+import Link from "next/link";
 
 const Header = () => {
-  const { userId } = useAuth();
   return (
     <header className="sticky top-0 z-50 backdrop-blur bg-card text-card-foreground border-border">
       <div className="flex items-center justify-between px-6 py-3">
@@ -17,16 +16,7 @@ const Header = () => {
         {/* RIGHT */}
         <div className="flex items-center gap-5">
           <ModeToggle></ModeToggle>
-          {userId ? (
-            <UserButton />
-          ) : (
-            <Link
-              href="/sign-in"
-              className="font-heading bg-primary text-primary-foreground rounded-full px-6 py-3"
-            >
-              Đăng nhập
-            </Link>
-          )}
+          { <Link></Link><UserButton />}
         </div>
       </div>
     </header>

@@ -8,6 +8,7 @@ const Sidebar = () => {
       <h1 className="font-heading text-lg font-bold mb-5 text-center">
         Khoá Học Likha
       </h1>
+
       <ul className="flex flex-col gap-2">
         {MenuLinks.map((item, index) => {
           const Icon = item.icon;
