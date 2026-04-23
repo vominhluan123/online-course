@@ -1,7 +1,7 @@
 export type CreateUserInput = {
   clerkId: string;
+  name?: string;
   username: string;
   email: string;
-  name?: string;
   avatar?: string;
 };

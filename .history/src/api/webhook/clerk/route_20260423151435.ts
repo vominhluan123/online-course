@@ -21,7 +21,7 @@ export async function POST(req: Request) {
   let msg: WebhookEvent;
 
   try {
-    msg = svix.verify(body, {
+    msg = sivx.verify(body, {
       "svix-id": svix_id,
       "svix-timestamp": svix_timestamp,
       "svix-signature": svix_signature,

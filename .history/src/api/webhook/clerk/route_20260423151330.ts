@@ -16,12 +16,12 @@ export async function POST(req: Request) {
   const payload = await req.json();
   const body = JSON.stringify(payload);
 
-  const svix = new Webhook(process.env.WEBHOOK_SECRET);
+  const sivx = new Webhook(process.env.WEBHOOK_SECRET);
 
   let msg: WebhookEvent;
 
   try {
-    msg = svix.verify(body, {
+    msg = sivx.verify(body, {
       "svix-id": svix_id,
       "svix-timestamp": svix_timestamp,
       "svix-signature": svix_signature,
