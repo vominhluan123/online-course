@@ -1,0 +1,36 @@
+// chương học
+import { HydratedDocument, model, models, Schema, Types } from "mongoose";
+
+const lectureSchema = new Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+    },
+    _destroy: {
+      type: Boolean,
+      default: false,
+    },
+    course: {
+      type: Types.ObjectId,
+      ref: "Course",
+    },
+    lessons: [
+      {
+        type: Types.ObjectId,
+        ref: "Lesson",
+      },
+    ],
+    order: {
+      type: Number,
+      default: 0,
+    },
+  },
+  {
+    timestamps: { createdAt: "created_at", updatedAt: true },
+  },
+);
+
+export type LectureSchemaType = HydratedDocument<typeof lectureSchema>;
+
+export const Lecture = models.Lecture || model("Lecture", lectureSchema);

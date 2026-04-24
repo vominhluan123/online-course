@@ -1,0 +1,4 @@
+enum CourseStatus {
+  APPROVED = "APPROVED",
+  
+}

@@ -1,0 +1,9 @@
+enum CourseStatus {
+  APPROVED = "APPROVED",
+  PENDING = "PENDING",
+  REJECTED = "REJECTED",
+}
+enum CourseLevel {
+  BEGINER = "BEGINER",
+  INTERM
+}
