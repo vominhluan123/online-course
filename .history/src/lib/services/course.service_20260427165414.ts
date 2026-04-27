@@ -1,0 +1,1 @@
+export async function getCourseBySlug({ slug }: { slug: string }) {}
