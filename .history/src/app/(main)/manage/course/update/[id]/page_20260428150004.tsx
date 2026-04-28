@@ -1,27 +1,35 @@
 "use client";
+
 import { CourseUpdate } from "@/components/course";
 import { Heading } from "@/components/ui";
-import { useRouter, useSearchParams } from "next/navigation";
+import { getCourseBySlug } from "@/lib/services/course.service";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { toast } from "sonner";
 
 const Page = () => {
   const searchParams = useSearchParams();
-  const hasShown = useRef(false);
+  const params = useParams();
   const router = useRouter();
+  const hasShown = useRef(false);
+
+  const id = params.id as string;
+
   useEffect(() => {
-    if (searchParams.get("created") && !hasShown.current) {
+    const created = searchParams.get("created");
+
+    if (created && !hasShown.current) {
       toast.success("Tạo khóa học thành công");
       hasShown.current = true;
 
-      router.replace("/manage/course/update");
+      router.replace(`/manage/course/update/${id}`);
     }
-  }, [router, searchParams]);
-
+  }, [searchParams, router, id]);
+  const findCourse = getCourseBySlug({ slug: searchParams.slug });
   return (
     <>
       <Heading className="mb-8">Cập nhật khoá học</Heading>
-      <CourseUpdate></CourseUpdate>;
+      <CourseUpdate />
     </>
   );
 };

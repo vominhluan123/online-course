@@ -1,0 +1,16 @@
+"use server";
+
+import { ConnectToDatabase, Course } from "@/lib/db";
+import { getUserInfo } from "@/lib/services/user.service";
+import { CreateCourseParams } from "@/types/course";
+
+export async function createCourse(params: CreateCourseParams) {
+  try {
+    await ConnectToDatabase();
+    const user = await getUserInfo
+    const course = await Course.create(params);
+    return JSON.parse(JSON.stringify(course));
+  } catch (error) {
+    console.log(error);
+  }
+}
