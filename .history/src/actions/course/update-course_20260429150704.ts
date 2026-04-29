@@ -1,0 +1,21 @@
+"use server";
+
+import { ConnectToDatabase, Course } from "@/lib/db";
+
+export async function updateCourse(params: UpdateCourseParams) {
+  try {
+    await ConnectToDatabase();
+
+    const { id, ...updateData } = params;
+
+    if (!id) throw new Error("Thiếu id");
+
+    const course = await Course.findByIdAndUpdate(id, updateData, {
+      new: true, // trả về data sau update
+    });
+
+    return JSON.parse(JSON.stringify(course));
+  } catch (error) {
+    console.log(error);
+  }
+}

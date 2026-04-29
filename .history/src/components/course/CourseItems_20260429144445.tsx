@@ -1,0 +1,63 @@
+import { CourseSchemaType } from "@/lib/db";
+import Image from "next/image";
+import Link from "next/link";
+import { IconStar } from "../icons";
+
+const CourseItems = ({ course }: { course: CourseSchemaType }) => {
+  const CourseInfo = [
+    {
+      title: course.rating[0],
+      icon: (className?: string) => <IconStar className={className}></IconStar>,
+    },
+  ];
+  return (
+    <div className="bg-card border text-card-foreground p-4 rounded-2xl border-border flex flex-col">
+      href={`course/${course.slug}`}
+      <Linkhref={`course/${course.slug}`} className="block relative aspect-video">
+        <Image
+          src="https://plus.unsplash.com/premium_photo-1668485966810-cbd0f685f58f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Z2lybHxlbnwwfHwwfHx8MA%3D%3D"
+          fill
+          alt={""}
+          className="object-cover rounded-lg"
+          loading="eager"
+          sizes="(max-width: 768px) 100vw,
+       (max-width: 1024px) 50vw,
+       33vw"
+        />
+        {/* <span className="absolute right-3 top-3 bg-accent text-accent-foreground rounded-full px-3 py-1 text-xs">
+          new
+        </span> */}
+      </Linkhref=>
+      <div className="pt-4 text-muted-foreground  flex-1 flex flex-col">
+        <div className="flex items-center justify-end">
+          {CourseInfo.map((item, index) => (
+            <div
+              className="py-1 gap-1 justify-center px-3 flex items-center bg-accent text-accent-foreground rounded-full"
+              key={index}
+            >
+              {item.icon("size-4")}
+              <span> {item.title}</span>
+            </div>
+          ))}
+        </div>
+        <p className="font-bold text-lg mb-5 text-primary">{course.title}</p>
+        <div className="flex items-center justify-between mt-auto">
+          <span className="text-sm py-1 text-muted-foreground px-3 bg-muted rounded-full">
+            30h20p
+          </span>
+          <span className="text-primary font-semibold font-heading">
+            {course.price}
+          </span>
+        </div>
+        <Link
+          href={`course/${course.slug}`}
+          className="flex items-center w-full justify-center mt-10 rounded-lg font-semibold font-heading bg-primary text-primary-foreground h-12"
+        >
+          Xem chi tiết
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+export default CourseItems;
