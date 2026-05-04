@@ -80,6 +80,7 @@ const formSchema = z
 const CourseUpdate = ({ course }: { course: CourseClient }) => {
   const toFormArray = (arr?: string[]) =>
     (arr || []).map((item) => ({ value: item || "" }));
+
   const toDBArray = (arr: { value: string }[]) => arr.map((item) => item.value);
   const form = useForm<z.infer<typeof formSchema>>({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

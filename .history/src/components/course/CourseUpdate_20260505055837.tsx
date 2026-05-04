@@ -18,13 +18,8 @@ import { Spinner } from "../ui/spinner";
 import { Textarea } from "../ui/textarea";
 
 const infoSchema = z.object({
-  requirements: z
-    .array(z.object({ value: z.string().min(1, "Không được để trống") }))
-    .default([]),
-
-  benefits: z
-    .array(z.object({ value: z.string().min(1, "Không được để trống") }))
-    .default([]),
+  requirements: z.array(z.string().min(1, "Không được để trống")).default([]),
+  benefits: z.array(z.string().min(1, "Không được để trống")).default([]),
 });
 const formSchema = z
   .object({
@@ -78,9 +73,6 @@ const formSchema = z
   );
 
 const CourseUpdate = ({ course }: { course: CourseClient }) => {
-  const toFormArray = (arr?: string[]) =>
-    (arr || []).map((item) => ({ value: item || "" }));
-  const toDBArray = (arr: { value: string }[]) => arr.map((item) => item.value);
   const form = useForm<z.infer<typeof formSchema>>({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     resolver: zodResolver(formSchema) as any,
@@ -94,8 +86,8 @@ const CourseUpdate = ({ course }: { course: CourseClient }) => {
       sale_price: course.sale_price ?? undefined,
       status: course.status,
       info: {
-        requirements: toFormArray(course.info?.requirements),
-        benefits: toFormArray(course.info?.benefits),
+        requirements: course.info?.requirements ?? [""],
+        benefits: course.info?.benefits ?? [""],
       },
     },
     mode: "onBlur",
@@ -128,15 +120,12 @@ const CourseUpdate = ({ course }: { course: CourseClient }) => {
     });
     const payload = {
       ...data,
-      info: {
-        requirements: toDBArray(data.info.requirements),
-        benefits: toDBArray(data.info.benefits),
-      },
       slug: finalSlug,
     };
     try {
       await updateCourse({
         id: course._id,
+
         ...payload,
       });
       toast.success("Cập nhật thành công");
@@ -322,7 +311,7 @@ const CourseUpdate = ({ course }: { course: CourseClient }) => {
               {requirementFields.map((item, index) => (
                 <div key={item.id} className="flex gap-2">
                   <Input
-                    {...form.register(`info.requirements.${index}.value`)}
+                    {...form.register(`info.requirements.${index}` as const)}
                     placeholder={`Yêu cầu ${index + 1}`}
                   />
 
@@ -339,7 +328,7 @@ const CourseUpdate = ({ course }: { course: CourseClient }) => {
               <Button
                 type="button"
                 variant="outline"
-                onClick={() => appendRequirement({ value: "" })}
+                onClick={() => appendRequirement("")}
               >
                 + Thêm yêu cầu
               </Button>
@@ -352,7 +341,7 @@ const CourseUpdate = ({ course }: { course: CourseClient }) => {
               {benefitFields.map((item, index) => (
                 <div key={item.id} className="flex gap-2">
                   <Input
-                    {...form.register(`info.benefits.${index}.value`)}
+                    {...form.register(`info.benefits.${index}` as const)}
                     placeholder={`Lợi ích ${index + 1}`}
                   />
 
@@ -369,7 +358,7 @@ const CourseUpdate = ({ course }: { course: CourseClient }) => {
               <Button
                 type="button"
                 variant="outline"
-                onClick={() => appendBenefit({ value: "" })}
+                onClick={() => appendBenefit("")}
               >
                 + Thêm lợi ích
               </Button>

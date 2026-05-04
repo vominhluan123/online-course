@@ -78,9 +78,6 @@ const formSchema = z
   );
 
 const CourseUpdate = ({ course }: { course: CourseClient }) => {
-  const toFormArray = (arr?: string[]) =>
-    (arr || []).map((item) => ({ value: item || "" }));
-  const toDBArray = (arr: { value: string }[]) => arr.map((item) => item.value);
   const form = useForm<z.infer<typeof formSchema>>({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     resolver: zodResolver(formSchema) as any,
@@ -94,8 +91,12 @@ const CourseUpdate = ({ course }: { course: CourseClient }) => {
       sale_price: course.sale_price ?? undefined,
       status: course.status,
       info: {
-        requirements: toFormArray(course.info?.requirements),
-        benefits: toFormArray(course.info?.benefits),
+        requirements: (course.info?.requirements || []).map((req) => ({
+          value: req || "",
+        })),
+        benefits: (course.info?.benefits || []).map((ben) => ({
+          value: ben || "",
+        })),
       },
     },
     mode: "onBlur",
@@ -129,8 +130,8 @@ const CourseUpdate = ({ course }: { course: CourseClient }) => {
     const payload = {
       ...data,
       info: {
-        requirements: toDBArray(data.info.requirements),
-        benefits: toDBArray(data.info.benefits),
+        requirements: data.info.requirements.map((item) => item.value),
+        benefits: data.info.benefits.map((item) => item.value),
       },
       slug: finalSlug,
     };
