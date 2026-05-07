@@ -3,7 +3,6 @@ import { manrope, roboto } from "@/styles/fonts";
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Toaster } from "sonner";
-import "../styles/globals.css";
 
 export const metadata: Metadata = {
   title: "Online Course",

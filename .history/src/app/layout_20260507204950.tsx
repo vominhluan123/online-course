@@ -3,7 +3,7 @@ import { manrope, roboto } from "@/styles/fonts";
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Toaster } from "sonner";
-import "../styles/globals.css";
+import "../";
 
 export const metadata: Metadata = {
   title: "Online Course",
@@ -16,13 +16,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="vi"
-      className={`${manrope.variable} ${roboto.variable}`}
-      suppressHydrationWarning
-    >
-      <body>
-        <ClerkProvider>
+    <ClerkProvider>
+      <html
+        lang="vi"
+        className={`${manrope.variable} ${roboto.variable}`}
+        suppressHydrationWarning
+      >
+        <body>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
@@ -32,8 +32,8 @@ export default function RootLayout({
             {children}
             <Toaster position="top-center" closeButton />
           </ThemeProvider>
-        </ClerkProvider>
-      </body>
-    </html>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

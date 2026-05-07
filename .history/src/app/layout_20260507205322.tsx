@@ -16,13 +16,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="vi"
-      className={`${manrope.variable} ${roboto.variable}`}
-      suppressHydrationWarning
-    >
-      <body>
-        <ClerkProvider>
+   
+      <html
+        lang="vi"
+        className={`${manrope.variable} ${roboto.variable}`}
+        suppressHydrationWarning
+      >
+        <body>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
@@ -32,8 +32,8 @@ export default function RootLayout({
             {children}
             <Toaster position="top-center" closeButton />
           </ThemeProvider>
-        </ClerkProvider>
-      </body>
-    </html>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

@@ -16,24 +16,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="vi"
-      className={`${manrope.variable} ${roboto.variable}`}
-      suppressHydrationWarning
-    >
-      <body>
-        <ClerkProvider>
+   
+      <html
+        lang="vi"
+        className={`${manrope.variable} ${roboto.variable}`}
+        suppressHydrationWarning
+      >
+        <body>
+           <ClerkProvider>
+
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
-          >
+            >
             {children}
             <Toaster position="top-center" closeButton />
           </ThemeProvider>
-        </ClerkProvider>
-      </body>
-    </html>
+            </ClerkProvider>
+        </body>
+      </html>
+ 
   );
 }
