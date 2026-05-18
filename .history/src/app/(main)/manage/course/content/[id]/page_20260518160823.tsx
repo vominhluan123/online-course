@@ -3,9 +3,7 @@ import { getCourseById } from "@/lib/services/course.service";
 import { CircleX } from "lucide-react";
 
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
-  const { id } = await params;
-
-  const course = await getCourseById(id);
+  const course = await getCourseById(params.id);
 
   if (!course) {
     return (
