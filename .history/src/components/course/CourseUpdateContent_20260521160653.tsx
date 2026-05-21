@@ -26,7 +26,6 @@ import {
 } from "@/lib/db";
 import { LessonType } from "@/types/course";
 
-import { cn } from "@/lib/utils";
 import {
   BookOpen,
   Check,
@@ -186,7 +185,7 @@ const CourseUpdateContent = ({
                           role="button"
                           tabIndex={0}
                           aria-disabled={isDisabledSave || loading}
-                          className={actionClass}
+                          className=""
                           onClick={() => {
                             if (isDisabledSave || loading) return;
                             handleUpdateLecture(lecture._id.toString());

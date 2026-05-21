@@ -26,7 +26,6 @@ import {
 } from "@/lib/db";
 import { LessonType } from "@/types/course";
 
-import { cn } from "@/lib/utils";
 import {
   BookOpen,
   Check,

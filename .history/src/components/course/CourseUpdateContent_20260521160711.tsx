@@ -20,13 +20,13 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import {
+  cn,
   CourseWithLecturesType,
   LectureWithLessonsType,
   LessonTypeModel,
 } from "@/lib/db";
 import { LessonType } from "@/types/course";
 
-import { cn } from "@/lib/utils";
 import {
   BookOpen,
   Check,

@@ -26,10 +26,8 @@ import {
 } from "@/lib/db";
 import { LessonType } from "@/types/course";
 
-import { cn } from "@/lib/utils";
 import {
   BookOpen,
-  Check,
   CirclePlay,
   Clock3,
   FileText,
@@ -37,7 +35,6 @@ import {
   Pencil,
   Plus,
   Trash2,
-  X,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -53,14 +50,8 @@ const CourseUpdateContent = ({
   const router = useRouter();
   const letures = course.lectures;
   const [editingLectureId, setEditingLectureId] = useState<string | null>(null);
+
   const [editTitle, setEditTitle] = useState("");
-  const isDisabledSave = !editTitle.trim();
-  const actionClass = cn(
-    "flex size-8 items-center justify-center rounded-md transition-colors",
-    isDisabledSave || loading
-      ? "cursor-not-allowed opacity-50"
-      : "cursor-pointer hover:bg-muted",
-  );
   const handlerAddNewLecture = async () => {
     const res = await addLecture({
       title: "Chương mới",
@@ -93,6 +84,7 @@ const CourseUpdateContent = ({
   };
   const handleStartEditLecture = (lecture: LectureWithLessonsType) => {
     setEditingLectureId(lecture._id.toString());
+
     setEditTitle(lecture.title);
   };
   const handleCancelEdit = () => {
@@ -149,23 +141,15 @@ const CourseUpdateContent = ({
                     <div className="min-w-0 flex-1 space-y-1">
                       {editingLectureId === lecture._id.toString() ? (
                         <Input
-                          autoFocus
                           value={editTitle}
                           onChange={(e) => setEditTitle(e.target.value)}
                           onClick={(e) => e.stopPropagation()}
                           placeholder="Nhập tên chương..."
-                          onKeyDown={(e) => {
-                            if (e.key === "Enter" && !isDisabledSave) {
-                              handleUpdateLecture(lecture._id.toString());
-                            }
-
-                            if (e.key === "Escape") {
-                              handleCancelEdit();
-                            }
-                          }}
                         />
                       ) : (
-                        <h3 className="font-semibold">{lecture.title}</h3>
+                        <h3 className="font-semibold">
+                          Chương {lectureIndex + 1}: {lecture.title}
+                        </h3>
                       )}
                       <div className="flex items-center gap-2 text-sm text-muted-foreground">
                         <span>{lecture.lessons?.length || 0} bài học</span>
@@ -174,84 +158,48 @@ const CourseUpdateContent = ({
                   </div>
 
                   {/* ACTIONS */}
-
                   <div
                     className="flex items-center gap-1"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    {editingLectureId === lecture._id.toString() ? (
-                      <>
-                        {/* SAVE */}
-                        <div
-                          role="button"
-                          tabIndex={0}
-                          aria-disabled={isDisabledSave || loading}
-                          className={actionClass}
-                          onClick={() => {
-                            if (isDisabledSave || loading) return;
-                            handleUpdateLecture(lecture._id.toString());
-                          }}
-                        >
-                          <Check className="size-4 text-green-500" />
+                    <div className="flex size-8 items-center justify-center rounded-md transition-colors hover:bg-muted">
+                      <Pencil className="size-4" />
+                    </div>
+
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <div className="flex size-8 items-center justify-center rounded-md transition-colors hover:bg-muted">
+                          <Trash2 className="size-4 text-destructive" />
                         </div>
+                      </AlertDialogTrigger>
 
-                        {/* CANCEL */}
-                        <div
-                          className="flex size-8 cursor-pointer items-center justify-center rounded-md transition-colors hover:bg-muted"
-                          onClick={handleCancelEdit}
-                        >
-                          <X className="size-4 text-destructive" />
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        {/* EDIT */}
-                        <div
-                          className="flex size-8 cursor-pointer items-center justify-center rounded-md transition-colors hover:bg-muted"
-                          onClick={() => handleStartEditLecture(lecture)}
-                        >
-                          <Pencil className="size-4" />
-                        </div>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>Xóa chương học?</AlertDialogTitle>
 
-                        {/* DELETE */}
-                        <AlertDialog>
-                          <AlertDialogTrigger asChild>
-                            <div className="flex size-8 cursor-pointer items-center justify-center rounded-md transition-colors hover:bg-muted">
-                              <Trash2 className="size-4 text-destructive" />
-                            </div>
-                          </AlertDialogTrigger>
+                          <AlertDialogDescription>
+                            Hành động này không thể hoàn tác. Chương học và toàn
+                            bộ bài học bên trong sẽ bị xóa vĩnh viễn.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
 
-                          <AlertDialogContent>
-                            <AlertDialogHeader>
-                              <AlertDialogTitle>
-                                Xóa chương học?
-                              </AlertDialogTitle>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel disabled={loading}>
+                            Hủy
+                          </AlertDialogCancel>
 
-                              <AlertDialogDescription>
-                                Hành động này không thể hoàn tác. Chương học và
-                                toàn bộ bài học bên trong sẽ bị xóa.
-                              </AlertDialogDescription>
-                            </AlertDialogHeader>
-
-                            <AlertDialogFooter>
-                              <AlertDialogCancel disabled={loading}>
-                                Hủy
-                              </AlertDialogCancel>
-
-                              <AlertDialogAction
-                                disabled={loading}
-                                onClick={() =>
-                                  handlerDeleteLecture(lecture._id.toString())
-                                }
-                                className="bg-destructive hover:bg-destructive/90"
-                              >
-                                {loading ? "Đang xóa..." : "Xóa"}
-                              </AlertDialogAction>
-                            </AlertDialogFooter>
-                          </AlertDialogContent>
-                        </AlertDialog>
-                      </>
-                    )}
+                          <AlertDialogAction
+                            disabled={loading}
+                            onClick={() =>
+                              handlerDeleteLecture(lecture._id.toString())
+                            }
+                            className="bg-destructive hover:bg-destructive/90"
+                          >
+                            {loading ? "Đang xóa..." : "Xóa chương học"}
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
                   </div>
                 </div>
               </AccordionTrigger>

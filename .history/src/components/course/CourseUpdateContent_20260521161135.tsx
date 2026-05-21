@@ -26,7 +26,6 @@ import {
 } from "@/lib/db";
 import { LessonType } from "@/types/course";
 
-import { cn } from "@/lib/utils";
 import {
   BookOpen,
   Check,
@@ -43,6 +42,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Input } from "../ui/input";
+import { cn } from "@/lib/utils";
 
 const CourseUpdateContent = ({
   course,

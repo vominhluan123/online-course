@@ -26,7 +26,6 @@ import {
 } from "@/lib/db";
 import { LessonType } from "@/types/course";
 
-import { cn } from "@/lib/utils";
 import {
   BookOpen,
   Check,
@@ -55,12 +54,6 @@ const CourseUpdateContent = ({
   const [editingLectureId, setEditingLectureId] = useState<string | null>(null);
   const [editTitle, setEditTitle] = useState("");
   const isDisabledSave = !editTitle.trim();
-  const actionClass = cn(
-    "flex size-8 items-center justify-center rounded-md transition-colors",
-    isDisabledSave || loading
-      ? "cursor-not-allowed opacity-50"
-      : "cursor-pointer hover:bg-muted",
-  );
   const handlerAddNewLecture = async () => {
     const res = await addLecture({
       title: "Chương mới",
@@ -186,9 +179,11 @@ const CourseUpdateContent = ({
                           role="button"
                           tabIndex={0}
                           aria-disabled={isDisabledSave || loading}
-                          className={actionClass}
+                          className={`flex size-8 items-center justify-center rounded-md transition-colors${isDisabledSave || loading ?"cursor-not-allowed opacity-50": "cursor-pointer hover:bg-muted"}
+  `}
                           onClick={() => {
                             if (isDisabledSave || loading) return;
+
                             handleUpdateLecture(lecture._id.toString());
                           }}
                         >

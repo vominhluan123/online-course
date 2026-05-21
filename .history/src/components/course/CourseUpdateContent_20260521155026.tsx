@@ -26,7 +26,6 @@ import {
 } from "@/lib/db";
 import { LessonType } from "@/types/course";
 
-import { cn } from "@/lib/utils";
 import {
   BookOpen,
   Check,
@@ -55,12 +54,6 @@ const CourseUpdateContent = ({
   const [editingLectureId, setEditingLectureId] = useState<string | null>(null);
   const [editTitle, setEditTitle] = useState("");
   const isDisabledSave = !editTitle.trim();
-  const actionClass = cn(
-    "flex size-8 items-center justify-center rounded-md transition-colors",
-    isDisabledSave || loading
-      ? "cursor-not-allowed opacity-50"
-      : "cursor-pointer hover:bg-muted",
-  );
   const handlerAddNewLecture = async () => {
     const res = await addLecture({
       title: "Chương mới",
@@ -154,15 +147,6 @@ const CourseUpdateContent = ({
                           onChange={(e) => setEditTitle(e.target.value)}
                           onClick={(e) => e.stopPropagation()}
                           placeholder="Nhập tên chương..."
-                          onKeyDown={(e) => {
-                            if (e.key === "Enter" && !isDisabledSave) {
-                              handleUpdateLecture(lecture._id.toString());
-                            }
-
-                            if (e.key === "Escape") {
-                              handleCancelEdit();
-                            }
-                          }}
                         />
                       ) : (
                         <h3 className="font-semibold">{lecture.title}</h3>
@@ -182,18 +166,16 @@ const CourseUpdateContent = ({
                     {editingLectureId === lecture._id.toString() ? (
                       <>
                         {/* SAVE */}
-                        <div
-                          role="button"
-                          tabIndex={0}
-                          aria-disabled={isDisabledSave || loading}
-                          className={actionClass}
-                          onClick={() => {
-                            if (isDisabledSave || loading) return;
-                            handleUpdateLecture(lecture._id.toString());
-                          }}
+                        <button
+                          type="button"
+                          disabled={isDisabledSave || loading}
+                          className=" flex size-8 cursor-pointer items-center justify-cente rounded-md transition-colors hover:bg-muted"
+                          onClick={() =>
+                            handleUpdateLecture(lecture._id.toString())
+                          }
                         >
                           <Check className="size-4 text-green-500" />
-                        </div>
+                        </button>
 
                         {/* CANCEL */}
                         <div
