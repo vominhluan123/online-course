@@ -139,22 +139,19 @@ const CourseUpdateContent = ({
   const handleDeleteLesson = async (lessonId: string) => {
     try {
       setLoading(true);
-
       const result = await updateLesson({
         id: lessonId,
         _destroy: true,
       });
-
       if (!result?.success) {
         toast.error("Xóa bài học thất bại");
         return;
       }
-
-      toast.success("Xóa bài học thành công");
-
+      toast.error("Xóa bài học thất bại");
       router.refresh();
     } catch (error) {
       console.log(error);
+
       toast.error("Có lỗi xảy ra");
     } finally {
       setLoading(false);

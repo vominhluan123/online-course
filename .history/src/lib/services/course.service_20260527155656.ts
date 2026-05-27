@@ -12,9 +12,7 @@ export async function getCourseById(id: string) {
         },
         populate: {
           path: "lessons",
-          match: {
-            _destroy: false,
-          },
+          _d
         },
       })
       .lean();

@@ -136,30 +136,7 @@ const CourseUpdateContent = ({
       setLoading(false);
     }
   };
-  const handleDeleteLesson = async (lessonId: string) => {
-    try {
-      setLoading(true);
-
-      const result = await updateLesson({
-        id: lessonId,
-        _destroy: true,
-      });
-
-      if (!result?.success) {
-        toast.error("Xóa bài học thất bại");
-        return;
-      }
-
-      toast.success("Xóa bài học thành công");
-
-      router.refresh();
-    } catch (error) {
-      console.log(error);
-      toast.error("Có lỗi xảy ra");
-    } finally {
-      setLoading(false);
-    }
-  };
+  const handleDeleteLesson; 
   const handleStartEditLecture = (lecture: LectureWithLessonsType) => {
     setEditingLectureId(lecture._id.toString());
     setEditTitle(lecture.title);
@@ -447,44 +424,9 @@ const CourseUpdateContent = ({
                                   <Pencil className="size-4" />
                                 </Button>
 
-                                <AlertDialog>
-                                  <AlertDialogTrigger asChild>
-                                    <Button size="icon" variant="ghost">
-                                      <Trash2 className="size-4 text-destructive" />
-                                    </Button>
-                                  </AlertDialogTrigger>
-
-                                  <AlertDialogContent>
-                                    <AlertDialogHeader>
-                                      <AlertDialogTitle>
-                                        Xóa bài học?
-                                      </AlertDialogTitle>
-
-                                      <AlertDialogDescription>
-                                        Hành động này không thể hoàn tác. Bài
-                                        học sẽ bị xóa.
-                                      </AlertDialogDescription>
-                                    </AlertDialogHeader>
-
-                                    <AlertDialogFooter>
-                                      <AlertDialogCancel disabled={loading}>
-                                        Hủy
-                                      </AlertDialogCancel>
-
-                                      <AlertDialogAction
-                                        disabled={loading}
-                                        onClick={() =>
-                                          handleDeleteLesson(
-                                            lesson._id.toString(),
-                                          )
-                                        }
-                                        className="bg-destructive hover:bg-destructive/90"
-                                      >
-                                        {loading ? "Đang xóa..." : "Xóa"}
-                                      </AlertDialogAction>
-                                    </AlertDialogFooter>
-                                  </AlertDialogContent>
-                                </AlertDialog>
+                                <Button size="icon" variant="ghost">
+                                  <Trash2 className="size-4 text-destructive" />
+                                </Button>
                               </>
                             )}
                           </div>

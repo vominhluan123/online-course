@@ -155,6 +155,7 @@ const CourseUpdateContent = ({
       router.refresh();
     } catch (error) {
       console.log(error);
+
       toast.error("Có lỗi xảy ra");
     } finally {
       setLoading(false);
