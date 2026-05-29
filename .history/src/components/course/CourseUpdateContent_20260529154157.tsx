@@ -44,7 +44,6 @@ import {
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
-import LessonForm from "../lesson/LessonForm";
 import { Input } from "../ui/input";
 
 const CourseUpdateContent = ({
@@ -471,14 +470,6 @@ const CourseUpdateContent = ({
                                 </AlertDialog>
                               </>
                             )}
-                            <Button size="icon" variant="ghost" asChild>
-                              <a
-                                href={`/course/${course.slug}?preview=true`}
-                                target="_blank"
-                              >
-                                👁
-                              </a>
-                            </Button>
                           </div>
                         </div>
                       );

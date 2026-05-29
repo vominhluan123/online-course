@@ -43,8 +43,7 @@ const page = async ({
       />
     );
   }
-  const canViewCourse =
-    course.status === CourseStatus.APPROVED || (isAdmin && isPreview);
+  const canViewCourse = course.status === CourseStatus.APPROVED || isAdmin;
 
   // Chưa được duyệt
   if (!canViewCourse) {
@@ -83,11 +82,6 @@ const page = async ({
   return (
     <div className="grid grid-cols-1 xl:grid-cols-[2fr,1fr] gap-6 lg:gap-10 min-h-screen">
       <div>
-        {isPreview && (
-          <div className="mb-4 rounded-lg bg-primary p-3 text-sm text-primary-foreground">
-            Bạn đang ở chế độ xem trước
-          </div>
-        )}
         <div className="aspect-video relative max-w-5xl mt-5 mb-5">
           {course.intro_url ? (
             <iframe

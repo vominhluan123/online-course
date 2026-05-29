@@ -471,14 +471,6 @@ const CourseUpdateContent = ({
                                 </AlertDialog>
                               </>
                             )}
-                            <Button size="icon" variant="ghost" asChild>
-                              <a
-                                href={`/course/${course.slug}?preview=true`}
-                                target="_blank"
-                              >
-                                👁
-                              </a>
-                            </Button>
                           </div>
                         </div>
                       );

@@ -84,7 +84,7 @@ const page = async ({
     <div className="grid grid-cols-1 xl:grid-cols-[2fr,1fr] gap-6 lg:gap-10 min-h-screen">
       <div>
         {isPreview && (
-          <div className="mb-4 rounded-lg bg-primary p-3 text-sm text-primary-foreground">
+          <div className="mb-4 rounded-lg bg- p-3 text-sm text-accent-foreground">
             Bạn đang ở chế độ xem trước
           </div>
         )}
