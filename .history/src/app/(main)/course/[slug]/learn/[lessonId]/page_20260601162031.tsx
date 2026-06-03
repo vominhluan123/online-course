@@ -8,8 +8,8 @@ type Props = {
 export default async function LearnPage({ params }: Props) {
   const { slug, lessonId } = await params;
 
-  console.log(slug); 
-  console.log(lessonId); 
+  console.log(slug);
+  console.log(lessonId);
 
   return <div>Trang học</div>;
 }
