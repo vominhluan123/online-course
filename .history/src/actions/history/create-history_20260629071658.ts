@@ -1,0 +1,15 @@
+"use sever";
+
+import { ConnectToDatabase, User } from "@/lib/db";
+import { auth } from "@clerk/nextjs/server";
+
+export async function createHistory(params: any): Promise<UserSchemaType | null> {
+  try {
+    await ConnectToDatabase();
+    const { userId } = auth();
+    const findUser = await User.findOne({ userId: userId });
+    if (!findUser) return;
+  } catch (error) {
+    console.log(error);
+  }
+}

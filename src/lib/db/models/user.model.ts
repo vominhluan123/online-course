@@ -9,6 +9,7 @@ export type UserTypeModel = {
   status: UserStatus;
   role: UserRole;
   courses: Types.ObjectId[];
+  completedLessons: Types.ObjectId[];
 };
 const userSchema = new Schema(
   {
@@ -29,6 +30,7 @@ const userSchema = new Schema(
     },
 
     courses: [{ type: Types.ObjectId, ref: "Course" }],
+    completedLessons: [{ type: Types.ObjectId, ref: "Lesson" }],
   },
   {
     timestamps: true,

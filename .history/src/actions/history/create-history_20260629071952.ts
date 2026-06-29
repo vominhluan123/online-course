@@ -1,0 +1,13 @@
+"use sever";
+import { ConnectToDatabase, User, UserSchemaType } from "@/lib/db";
+export async function createHistory(
+  userId: String,
+): Promise<UserSchemaType | null> {
+  try {
+    await ConnectToDatabase();
+    const user = await User.findOne({ clerkId: userId });
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
