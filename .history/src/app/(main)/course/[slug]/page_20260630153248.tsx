@@ -168,7 +168,11 @@ const page = async ({
               </span>
             </div>
           </div>
-          <Accordion type="multiple" className="w-full border border-border">
+          <Accordion
+            type="single"
+            collapsible
+            className="w-full border border-border"
+          >
             {course.lectures?.map((lecture, lectureIndex) => (
               <AccordionItem
                 key={lecture._id.toString()}
@@ -240,7 +244,7 @@ const page = async ({
                       return (
                         <div
                           key={lesson._id.toString()}
-                          className="border-border flex items-center justify-between rounded-lg border bg-muted/30 px-4 py-3"
+                          className="flex items-center justify-between rounded-lg border bg-muted/30 px-4 py-3"
                         >
                           {content}
                         </div>

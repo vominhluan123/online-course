@@ -156,7 +156,7 @@ const page = async ({
           Nội dung khóa học
         </h2>
         <div className="bg-card rounded-xl border border-border">
-          <div className="p-5 border-b border-border">
+          <div className="p-5 border-b">
             <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
               <span>{course.lectures?.length || 0} chương</span>
               <span>
@@ -168,7 +168,11 @@ const page = async ({
               </span>
             </div>
           </div>
-          <Accordion type="multiple" className="w-full border border-border">
+          <Accordion
+            type="single"
+            collapsible
+            className="w-full border border-border"
+          >
             {course.lectures?.map((lecture, lectureIndex) => (
               <AccordionItem
                 key={lecture._id.toString()}
@@ -189,14 +193,14 @@ const page = async ({
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
-                  <div className="px-5 pb-5 space-y-3 ">
+                  <div className="px-5 pb-5 space-y-3">
                     {lecture.lessons?.map((lesson, lessonIndex) => {
                       const isPreview = lesson.preview;
                       const content = (
                         <>
                           {/* LEFT */}
                           <div className="flex items-center gap-3">
-                            <div className="flex size-8 items-center justify-center rounded-full border bg-background text-sm font-medium border-border">
+                            <div className="flex size-8 items-center justify-center rounded-full border bg-background text-sm font-medium">
                               {lessonIndex + 1}
                             </div>
                             <div>
@@ -231,7 +235,7 @@ const page = async ({
                           <Link
                             key={lesson._id.toString()}
                             href={`/course/${slug}/learn/${lesson._id}`}
-                            className="flex items-center justify-between rounded-lg border bg-muted/30 px-4 py-3 hover:bg-muted border-border transition-colors"
+                            className="flex items-center justify-between rounded-lg border bg-muted/30 px-4 py-3 hover:bg-muted transition-colors"
                           >
                             {content}
                           </Link>
@@ -240,7 +244,7 @@ const page = async ({
                       return (
                         <div
                           key={lesson._id.toString()}
-                          className="border-border flex items-center justify-between rounded-lg border bg-muted/30 px-4 py-3"
+                          className="flex items-center justify-between rounded-lg border bg-muted/30 px-4 py-3"
                         >
                           {content}
                         </div>

@@ -3,8 +3,10 @@ import { findAllLessonsByCourse } from "@/actions/lesson/get-all-lesson";
 import { getLessonBySlug } from "@/actions/lesson/get-lesson-slug";
 import { EmptyState } from "@/components/course";
 import LessonSidebar from "@/components/lesson/LessonSidebar";
-import { requireUser } from "@/lib/auth/require-user";
 import { getCourseBySlug } from "@/lib/services/course.service";
+import { getUserInfo } from "@/lib/services/user.service";
+import { RedirectToSignIn } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { ChevronLeft, ChevronRight, CircleX } from "lucide-react";
 import Link from "next/link";
 type Props = {
@@ -14,7 +16,10 @@ type Props = {
   }>;
 };
 export default async function LearnPage({ params }: Props) {
-  const user = await requireUser();
+  const { userId } = await auth();
+  if (!userId) return RedirectToSignIn();
+  const findUser = await getUserInfo()
+  if (!findUser) return RedirectToSignIn();
   const { slug, lessonId } = await params;
   const lessonDetails = await getLessonBySlug({ slug, lessonId });
   const lessons = await findAllLessonsByCourse(slug);

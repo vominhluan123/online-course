@@ -168,7 +168,11 @@ const page = async ({
               </span>
             </div>
           </div>
-          <Accordion type="multiple" className="w-full border border-border">
+          <Accordion
+            type="multiple"
+            collapsible
+            className="w-full border border-border"
+          >
             {course.lectures?.map((lecture, lectureIndex) => (
               <AccordionItem
                 key={lecture._id.toString()}
