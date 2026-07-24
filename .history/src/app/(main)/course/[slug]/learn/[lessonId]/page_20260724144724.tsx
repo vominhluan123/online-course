@@ -115,40 +115,7 @@ export default async function LearnPage({ params }: Props) {
             </Link>
           )}
         </div>
-        <div className="grid grid-cols-2 gap-3 md:hidden">
-          {prevLesson ? (
-            <Link
-              href={`/course/${slug}/learn/${prevLesson._id}`}
-              className="
-        flex min-h-12 items-center justify-center gap-2 rounded-lg
-        border border-border px-4 text-sm font-medium
-        active:scale-[0.98] active:bg-muted bg-card
-      "
-            >
-              <ChevronLeft className="size-4" />
-              Bài trước
-            </Link>
-          ) : (
-            <div />
-          )}
-
-          {nextLesson ? (
-            <Link
-              href={`/course/${slug}/learn/${nextLesson._id}`}
-              className="
-        flex min-h-12 items-center justify-center gap-2 rounded-lg
-        bg-primary px-4 text-sm font-medium text-primary-foreground
-        active:scale-[0.98] active:opacity-90
-      "
-            >
-              Bài tiếp theo
-              <ChevronRight className="size-4" />
-            </Link>
-          ) : (
-            <div />
-          )}
-        </div>
-        <div className="rounded-xl border border-border p-6 bg-card text-card-foreground">
+        <div className="rounded-xl border border-border p-6">
           <h1>{lessonDetails.title}</h1>
         </div>
       </div>
@@ -160,7 +127,7 @@ export default async function LearnPage({ params }: Props) {
         history={history}
       />
       {lessonDetails.content && (
-        <div className="rounded-xl border border-border bg-card p-6">
+        <div className="rounded-xl border border-border p-6">
           <h2 className="mb-4 text-xl font-semibold">Nội dung bài học</h2>
           <article
             className="prose

@@ -9,7 +9,7 @@ import {
 import { History } from "@/lib/db/models/history.model";
 import { auth } from "@clerk/nextjs/server";
 
-export async function getOrCreateHistory(courseId: string, lessonId: string) {
+export async function getOrCreateHistory(courseId: string, lessonId) {
   await ConnectToDatabase();
 
   const { userId } = await auth();
@@ -58,9 +58,6 @@ export async function getOrCreateHistory(courseId: string, lessonId: string) {
       completed: false,
     });
   }
-  history.currentLesson = lessonId;
-
-  await history.save();
 
   return JSON.parse(JSON.stringify(history));
 }

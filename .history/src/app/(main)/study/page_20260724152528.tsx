@@ -62,9 +62,7 @@ async function LearningCourses() {
                     Đã hoàn thành
                   </Badge>
                 ) : (
-                  <Badge className="rounded-lg bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300">
-                    Đang học
-                  </Badge>
+                  <Badge variant="secondary" className="roud">Đang học</Badge>
                 )}
               </div>
 

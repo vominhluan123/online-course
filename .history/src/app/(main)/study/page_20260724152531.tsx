@@ -62,7 +62,7 @@ async function LearningCourses() {
                     Đã hoàn thành
                   </Badge>
                 ) : (
-                  <Badge className="rounded-lg bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300">
+                  <Badge variant="secondary" className="rounded-lg">
                     Đang học
                   </Badge>
                 )}

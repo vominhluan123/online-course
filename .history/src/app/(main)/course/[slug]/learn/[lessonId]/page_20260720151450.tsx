@@ -20,7 +20,7 @@ export default async function LearnPage({ params }: Props) {
   const lessons = await findAllLessonsByCourse(slug);
   const currentIndex = lessons.findIndex((l) => l._id.toString() === lessonId);
   const course = await getCourseBySlug(slug);
-  const history = await getOrCreateHistory(course._id, lessonId);
+  const history = await getOrCreateHistory(course._id,les);
   const prevLesson = lessons[currentIndex - 1] || null;
   const nextLesson = lessons[currentIndex + 1] || null;
   if (!lessonDetails) {
@@ -76,18 +76,17 @@ export default async function LearnPage({ params }: Props) {
               allowFullScreen
             />
           </div>
-
-          {/* Prev - desktop only */}
+          {/* Prev */}
           {prevLesson && (
             <Link
               href={`/course/${slug}/learn/${prevLesson._id}`}
-              aria-label="Bài trước"
               className="
-        absolute left-4 top-1/2 hidden -translate-y-1/2
-        opacity-0 transition-all duration-300
-        hover:scale-105 active:scale-95
+        absolute left-4 top-1/2
+        -translate-y-1/2
+        opacity-0
+        transition-all
+        duration-300
         group-hover:opacity-100
-        md:block
       "
             >
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-sm">
@@ -95,18 +94,17 @@ export default async function LearnPage({ params }: Props) {
               </div>
             </Link>
           )}
-
-          {/* Next - desktop only */}
+          {/* Next */}
           {nextLesson && (
             <Link
               href={`/course/${slug}/learn/${nextLesson._id}`}
-              aria-label="Bài tiếp theo"
               className="
-        absolute right-4 top-1/2 hidden -translate-y-1/2
-        opacity-0 transition-all duration-300
-        hover:scale-105 active:scale-95
+        absolute right-4 top-1/2
+        -translate-y-1/2
+        opacity-0
+        transition-all
+        duration-300
         group-hover:opacity-100
-        md:block
       "
             >
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-sm">
@@ -115,40 +113,7 @@ export default async function LearnPage({ params }: Props) {
             </Link>
           )}
         </div>
-        <div className="grid grid-cols-2 gap-3 md:hidden">
-          {prevLesson ? (
-            <Link
-              href={`/course/${slug}/learn/${prevLesson._id}`}
-              className="
-        flex min-h-12 items-center justify-center gap-2 rounded-lg
-        border border-border px-4 text-sm font-medium
-        active:scale-[0.98] active:bg-muted bg-card
-      "
-            >
-              <ChevronLeft className="size-4" />
-              Bài trước
-            </Link>
-          ) : (
-            <div />
-          )}
-
-          {nextLesson ? (
-            <Link
-              href={`/course/${slug}/learn/${nextLesson._id}`}
-              className="
-        flex min-h-12 items-center justify-center gap-2 rounded-lg
-        bg-primary px-4 text-sm font-medium text-primary-foreground
-        active:scale-[0.98] active:opacity-90
-      "
-            >
-              Bài tiếp theo
-              <ChevronRight className="size-4" />
-            </Link>
-          ) : (
-            <div />
-          )}
-        </div>
-        <div className="rounded-xl border border-border p-6 bg-card text-card-foreground">
+        <div className="rounded-xl border border-border p-6">
           <h1>{lessonDetails.title}</h1>
         </div>
       </div>
@@ -160,7 +125,7 @@ export default async function LearnPage({ params }: Props) {
         history={history}
       />
       {lessonDetails.content && (
-        <div className="rounded-xl border border-border bg-card p-6">
+        <div className="rounded-xl border border-border p-6">
           <h2 className="mb-4 text-xl font-semibold">Nội dung bài học</h2>
           <article
             className="prose

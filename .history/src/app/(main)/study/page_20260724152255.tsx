@@ -52,19 +52,15 @@ async function LearningCourses() {
             />
 
             <CardContent className="space-y-4 p-5">
-              <div className="flex items-start justify-between gap-3">
+              <div className=" rounded-md border flex items-start justify-between gap-3">
                 <h2 className="line-clamp-2 font-semibold">
                   {history.course.title}
                 </h2>
 
                 {history.completed ? (
-                  <Badge className="rounded-lg bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300">
-                    Đã hoàn thành
-                  </Badge>
+                  <Badge>Đã hoàn thành</Badge>
                 ) : (
-                  <Badge className="rounded-lg bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300">
-                    Đang học
-                  </Badge>
+                  <Badge variant="secondary">Đang học</Badge>
                 )}
               </div>
 

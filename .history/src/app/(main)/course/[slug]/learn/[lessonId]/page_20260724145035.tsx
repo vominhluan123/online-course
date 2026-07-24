@@ -160,7 +160,7 @@ export default async function LearnPage({ params }: Props) {
         history={history}
       />
       {lessonDetails.content && (
-        <div className="rounded-xl border border-border bg-card p-6">
+        <div className="rounded-xl border border-border p-6">
           <h2 className="mb-4 text-xl font-semibold">Nội dung bài học</h2>
           <article
             className="prose

@@ -58,9 +58,6 @@ export async function getOrCreateHistory(courseId: string, lessonId: string) {
       completed: false,
     });
   }
-  history.currentLesson = lessonId;
-
-  await history.save();
 
   return JSON.parse(JSON.stringify(history));
 }

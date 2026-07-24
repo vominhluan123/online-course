@@ -65,7 +65,7 @@ export default async function LearnPage({ params }: Props) {
     <div className="grid gap-6 lg:grid-cols-[1fr_350px]">
       {/* Main content */}
       <div className="space-y-6">
-        <div className="group relative overflow-hidden rounded-xl border border-border">
+        <div className="group relative overflow-hidden rounded-xl border bg-c border-border">
           <div className="aspect-video">
             <iframe
               className="h-full w-full"

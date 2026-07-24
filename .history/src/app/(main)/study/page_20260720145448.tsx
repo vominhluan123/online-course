@@ -6,10 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Suspense } from "react";
 
-async function LearningCourses() {
+const Page = async () => {
   const histories = await getMyLearningCourses();
 
   if (histories.length === 0) {
@@ -38,16 +36,15 @@ async function LearningCourses() {
       </div>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {histories.map((history) => (
+        {histories.map((history: any) => (
           <Card
-            key={history._id.toString()}
+            key={history._id}
             className="overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ring-0"
           >
             <Image
-              src={history.course.image || "/no-image.png"}
+              src={history.course.image}
               alt={history.course.title}
-              width={800}
-              height={500}
+            
               className="aspect-video w-full object-cover"
             />
 
@@ -58,13 +55,9 @@ async function LearningCourses() {
                 </h2>
 
                 {history.completed ? (
-                  <Badge className="rounded-lg bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300">
-                    Đã hoàn thành
-                  </Badge>
+                  <Badge>Đã hoàn thành</Badge>
                 ) : (
-                  <Badge className="rounded-lg bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300">
-                    Đang học
-                  </Badge>
+                  <Badge variant="secondary">Đang học</Badge>
                 )}
               </div>
 
@@ -83,12 +76,11 @@ async function LearningCourses() {
                 className="w-full bg-primary text-primary-foreground h-10 md:h-12 hover:bg-primary/80"
               >
                 <Link
-                  target="_blank"
                   href={`/course/${history.course.slug}/learn/${
                     history.currentLesson ?? ""
                   }`}
                 >
-                  {history.completed ? "Hoàn thành" : "Tiếp tục học"}
+                  {history.completed ? "Ôn tập khóa học" : "Tiếp tục học"}
                 </Link>
               </Button>
             </CardContent>
@@ -96,53 +88,6 @@ async function LearningCourses() {
         ))}
       </div>
     </section>
-  );
-}
-
-function StudyPageSkeleton() {
-  return (
-    <section className="py-8">
-      <div className="mb-8">
-        <Skeleton className="h-9 w-64" />
-        <Skeleton className="mt-3 h-5 w-80 max-w-full" />
-      </div>
-
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {Array.from({ length: 6 }).map((_, index) => (
-          <Card key={index} className="overflow-hidden ring-0">
-            <Skeleton className="aspect-video w-full rounded-none" />
-
-            <CardContent className="space-y-4 p-5">
-              <div className="flex items-start justify-between gap-3">
-                <div className="min-w-0 flex-1 space-y-2">
-                  <Skeleton className="h-5 w-full" />
-                  <Skeleton className="h-5 w-2/3" />
-                </div>
-                <Skeleton className="h-6 w-20 shrink-0 rounded-full" />
-              </div>
-
-              <div>
-                <div className="mb-2 flex items-center justify-between">
-                  <Skeleton className="h-4 w-32" />
-                  <Skeleton className="h-4 w-10" />
-                </div>
-                <Skeleton className="h-2 w-full rounded-full" />
-              </div>
-
-              <Skeleton className="h-10 rounded-lg md:h-12" />
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-const Page = () => {
-  return (
-    <Suspense fallback={<StudyPageSkeleton />}>
-      <LearningCourses />
-    </Suspense>
   );
 };
 
