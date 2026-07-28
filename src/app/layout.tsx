@@ -1,11 +1,11 @@
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { manrope, roboto } from "@/styles/fonts";
 import { ClerkProvider } from "@clerk/nextjs";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import NextTopLoader from "nextjs-toploader";
 import { Toaster } from "sonner";
 import "../styles/globals.css";
-
 export const metadata: Metadata = {
   title: "Online Course",
   description: "Nền tảng học lập trình trực tuyến",
@@ -42,6 +42,7 @@ export default function RootLayout({
               shadow="0 0 10px var(--loader-color), 0 0 5px var(--loader-color)"
             />
             {children}
+            <SpeedInsights />
             <Toaster position="top-center" closeButton />
           </ThemeProvider>
         </ClerkProvider>
