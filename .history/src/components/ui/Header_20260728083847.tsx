@@ -5,15 +5,10 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ModeToggle } from "./Toogle";
 import { Button } from "./button";
-import { Skeleton } from "./skeleton";
 
-type HeaderProps = {
-  onMenuClick?: () => void;
-  showHomeLink?: boolean;
-};
-
-const Header = ({ onMenuClick, showHomeLink = false }: HeaderProps) => {
+const Header = ({ onMenuClick }: { onMenuClick?: () => void }) => {
   const [isScrolled, setIsScrolled] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -22,7 +17,7 @@ const Header = ({ onMenuClick, showHomeLink = false }: HeaderProps) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  const { userId, isLoaded } = useAuth();
+  const { userId } = useAuth();
   return (
     <header
       className={`
@@ -52,30 +47,26 @@ const Header = ({ onMenuClick, showHomeLink = false }: HeaderProps) => {
             >
               <Menu className="size-5" />
             </Button>
-            {showHomeLink && (
-              <Link
-                href={"/"}
-                className="min-w-0 max-w-[52vw] text-card-foreground transition-colors hover:text-primary sm:max-w-none"
-                aria-label="Về trang chủ"
-              >
-                <span className="font-heading block truncate text-base font-bold text-primary sm:text-lg">
-                  Khoá Học Likha
-                </span>
-              </Link>
-            )}
+            <Link
+              href={"/"}
+              className="min-w-0 max-w-[52vw] text-card-foreground transition-colors hover:text-primary sm:max-w-none"
+              aria-label="Về trang chủ"
+            >
+              <span className="font-heading block text-primary truncate text-base font-bold sm:text-lg">
+                Khoá Học Likha
+              </span>
+            </Link>
           </div>
         </div>
         {/* RIGHT */}
         <div className="flex shrink-0 items-center gap-2 sm:gap-5">
           <ModeToggle></ModeToggle>
-          {!isLoaded ? (
-            <Skeleton className="size-9 rounded-full" />
-          ) : userId ? (
+          {userId ? (
             <UserButton />
           ) : (
             <Link
               href="/sign-in"
-              className="font-heading rounded-full bg-primary px-6 py-3 text-primary-foreground"
+              className="font-heading bg-primary text-primary-foreground rounded-full px-6 py-3"
             >
               Đăng nhập
             </Link>

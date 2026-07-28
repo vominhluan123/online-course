@@ -5,15 +5,10 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ModeToggle } from "./Toogle";
 import { Button } from "./button";
-import { Skeleton } from "./skeleton";
 
-type HeaderProps = {
-  onMenuClick?: () => void;
-  showHomeLink?: boolean;
-};
-
-const Header = ({ onMenuClick, showHomeLink = false }: HeaderProps) => {
+const Header = ({ onMenuClick }: { onMenuClick?: () => void }) => {
   const [isScrolled, setIsScrolled] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -22,7 +17,7 @@ const Header = ({ onMenuClick, showHomeLink = false }: HeaderProps) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  const { userId, isLoaded } = useAuth();
+  const { userId } = useAuth();
   return (
     <header
       className={`
@@ -39,43 +34,35 @@ const Header = ({ onMenuClick, showHomeLink = false }: HeaderProps) => {
       {isScrolled && (
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/40 to-transparent dark:from-white/10" />
       )}
-      <div className="flex items-center justify-between gap-3 px-4 py-3 sm:px-6">
+      <div className="flex items-center justify-between px-6 py-3">
         {/* LEFT */}
-        <div className="min-w-0 flex-1">
-          <div className="flex min-w-0 items-center gap-3 md:gap-5">
+        <div className="flex-1">
+          <div className="flex items-center gap-3 md:gap-5 shrink-0">
             <Button
               variant={"ghost"}
               type="button"
               aria-label="Open menu"
-              className="inline-flex size-10 shrink-0 items-center justify-center rounded-md md:hidden"
+              className="md:hidden inline-flex size-10 items-center justify-center rounded-md"
               onClick={onMenuClick}
             >
               <Menu className="size-5" />
             </Button>
-            {showHomeLink && (
-              <Link
-                href={"/"}
-                className="min-w-0 max-w-[52vw] text-card-foreground transition-colors hover:text-primary sm:max-w-none"
-                aria-label="Về trang chủ"
-              >
-                <span className="font-heading block truncate text-base font-bold text-primary sm:text-lg">
-                  Khoá Học Likha
-                </span>
-              </Link>
-            )}
+            <Link href={"/"}>
+              <span className="font-heading md:hidden block text-lg font-bold">
+                Khoá Học Likha
+              </span>
+            </Link>
           </div>
         </div>
         {/* RIGHT */}
-        <div className="flex shrink-0 items-center gap-2 sm:gap-5">
+        <div className="flex items-center gap-5">
           <ModeToggle></ModeToggle>
-          {!isLoaded ? (
-            <Skeleton className="size-9 rounded-full" />
-          ) : userId ? (
+          {userId ? (
             <UserButton />
           ) : (
             <Link
               href="/sign-in"
-              className="font-heading rounded-full bg-primary px-6 py-3 text-primary-foreground"
+              className="font-heading bg-primary text-primary-foreground rounded-full px-6 py-3"
             >
               Đăng nhập
             </Link>

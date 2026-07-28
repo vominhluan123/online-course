@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ModeToggle } from "./Toogle";
 import { Button } from "./button";
-import { Skeleton } from "./skeleton";
 
 type HeaderProps = {
   onMenuClick?: () => void;

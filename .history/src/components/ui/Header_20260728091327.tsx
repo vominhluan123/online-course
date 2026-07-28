@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ModeToggle } from "./Toogle";
 import { Button } from "./button";
-import { Skeleton } from "./skeleton";
 
 type HeaderProps = {
   onMenuClick?: () => void;
@@ -69,7 +68,7 @@ const Header = ({ onMenuClick, showHomeLink = false }: HeaderProps) => {
         <div className="flex shrink-0 items-center gap-2 sm:gap-5">
           <ModeToggle></ModeToggle>
           {!isLoaded ? (
-            <Skeleton className="size-9 rounded-full" />
+            <<Skeleton className="size-9 rounded-full" />
           ) : userId ? (
             <UserButton />
           ) : (

@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ModeToggle } from "./Toogle";
 import { Button } from "./button";
-import { Skeleton } from "./skeleton";
 
 type HeaderProps = {
   onMenuClick?: () => void;
@@ -14,6 +13,7 @@ type HeaderProps = {
 
 const Header = ({ onMenuClick, showHomeLink = false }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -22,7 +22,7 @@ const Header = ({ onMenuClick, showHomeLink = false }: HeaderProps) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  const { userId, isLoaded } = useAuth();
+  const { userId } = useAuth();
   return (
     <header
       className={`
@@ -69,7 +69,7 @@ const Header = ({ onMenuClick, showHomeLink = false }: HeaderProps) => {
         <div className="flex shrink-0 items-center gap-2 sm:gap-5">
           <ModeToggle></ModeToggle>
           {!isLoaded ? (
-            <Skeleton className="size-9 rounded-full" />
+            <div className="h-8 w-8 animate-pulse rounded-full bg-muted" />
           ) : userId ? (
             <UserButton />
           ) : (

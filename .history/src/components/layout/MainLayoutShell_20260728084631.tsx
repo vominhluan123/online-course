@@ -15,7 +15,7 @@ export default function MainLayoutShell({
   const isLearningPage = pathname.includes("/learn/");
   return (
     <div className="min-h-screen bg-base text-base-foreground">
-      {!isLearningPage && (
+      {isLearningPage && (
         <aside className="hidden md:block fixed top-0 left-0 h-screen w-[300px]">
           <Sidebar />
         </aside>
