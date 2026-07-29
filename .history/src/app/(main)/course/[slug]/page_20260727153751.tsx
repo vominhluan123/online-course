@@ -1,4 +1,4 @@
-import { EmptyState, PurchaseButton } from "@/components/course";
+import { EmptyState } from "@/components/course";
 import { IconCourse, IconPlay, IconUsers } from "@/components/icons";
 import {
   Accordion,
@@ -6,6 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
 import { getCourseBySlug } from "@/lib/services/course.service";
 import { getUserInfo } from "@/lib/services/user.service";
 import { CourseClient, CourseStatus } from "@/types/course";
@@ -287,7 +288,9 @@ const page = async ({
               </p>
             </div>
           </div>
-          <PurchaseButton courseId={course._id.toString()} />
+          <Button className="mt-8 w-full h-12" variant={"custom"} type="submit">
+            Mua ngay
+          </Button>
         </div>
       </div>
     </div>

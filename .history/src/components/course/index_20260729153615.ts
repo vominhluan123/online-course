@@ -6,5 +6,5 @@ export { default as CourseItems } from "./CourseItems";
 export { default as CourseUpdate } from "./CourseUpdate";
 export { default as CourseUpdateContent } from "./CourseUpdateContent";
 export { default as EmptyCourse } from "./EmptyCourse";
-export { default as PurchaseButton } from "./PurchaseButton";
 export { default as TrashCourseActions } from "./trash-course";
+export { default as PurchaseButton } from "./trash-course";
