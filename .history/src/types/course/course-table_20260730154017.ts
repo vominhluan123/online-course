@@ -2,9 +2,10 @@ import { CourseStatus } from "./course-status.enum";
 
 export type CourseTableType = {
   _id: string;
-  image?: string;
-  title: string;
-  price?: number;
-  status: CourseStatuss;
+  code: string;
+  course: string;
+  user: number;
+  status: CourseStatus;
+  slug: string;
   createdAt: Date;
 };
