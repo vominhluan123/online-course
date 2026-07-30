@@ -22,7 +22,7 @@ const page = async () => {
     _id: course._id.toString(),
     image: course.image,
     title: course.title,
-    price: course.sale_price ?? course.price,
+    price: course.sale_price ?? course.,
     status: course.status,
     createdAt: course.createdAt,
     slug: course.slug,
