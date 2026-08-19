@@ -1,0 +1,10 @@
+import { getCheckout } from "@/actions/order/checkout-order";
+
+const CheckOut = async ({ params }: { param: { code: string } }) => {
+  const checkoutDetails = await getCheckout({
+    code: params.code,
+  });
+  return <div>THANH TOÁN</div>;
+};
+
+export default CheckOut;
