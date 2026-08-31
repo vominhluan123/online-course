@@ -1,1 +1,0 @@
-interface User extends DocumentTimelineOptions
