@@ -1,0 +1,9 @@
+import { ConnectToDatabase } from "@/lib/db";
+import { Coupon } from "@/lib/db/models/coupon.model";
+
+export async function createCoupon(params: any) {
+  try {
+    await ConnectToDatabase();
+    const newCoupon =await Coupon.create
+  } catch (error) {}
+}
