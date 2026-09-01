@@ -1,6 +1,5 @@
 "use client";
 
-import CouponRowAction from "@/components/coupon/CouponRowAction";
 import { Badge } from "@/components/ui/badge";
 import { CouponConfig } from "@/constants/coupon";
 import { formatPrice } from "@/lib/format-price";
@@ -101,6 +100,42 @@ export const columns: ColumnDef<CouponTableType>[] = [
   {
     id: "actions",
     header: "Hành động",
-    cell: ({ row }) => <CouponRowAction coupon={row.original} />,
+    cell: ({ row }) => {
+      const coupon = row.original;
+
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" size="icon" className="h-8 w-8">
+              <MoreHorizontal className="h-4 w-4" />
+              <span className="sr-only">Mở hành động</span>
+            </Button>
+          </DropdownMenuTrigger>
+
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem
+              onClick={() => {
+                console.log("Cập nhật coupon:", coupon._id);
+              }}
+            >
+              <Pencil className="mr-2 h-4 w-4" />
+              Cập nhật
+            </DropdownMenuItem>
+
+            <DropdownMenuSeparator />
+
+            <DropdownMenuItem
+              className="text-destructive focus:text-destructive"
+              onClick={() => {
+                console.log("Xóa coupon:", coupon._id);
+              }}
+            >
+              <Trash2 className="mr-2 h-4 w-4" />
+              Xóa
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      );
+    },
   },
 ];

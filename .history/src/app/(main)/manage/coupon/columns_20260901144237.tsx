@@ -1,6 +1,5 @@
 "use client";
 
-import CouponRowAction from "@/components/coupon/CouponRowAction";
 import { Badge } from "@/components/ui/badge";
 import { CouponConfig } from "@/constants/coupon";
 import { formatPrice } from "@/lib/format-price";
@@ -97,10 +96,5 @@ export const columns: ColumnDef<CouponTableType>[] = [
         {new Date(row.original.endDate).toLocaleDateString("vi-VN")}
       </div>
     ),
-  },
-  {
-    id: "actions",
-    header: "Hành động",
-    cell: ({ row }) => <CouponRowAction coupon={row.original} />,
   },
 ];

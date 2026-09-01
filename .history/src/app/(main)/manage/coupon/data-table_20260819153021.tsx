@@ -54,7 +54,7 @@ export function DataTable<TData, TValue>({
         <div className="relative w-full max-w-sm">
           <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
           <Input
-            placeholder="Tìm kiếm thông tin coupon..."
+            placeholder="Tìm kiếm mã coupon..."
             value={(column?.getFilterValue() as string) ?? ""}
             onChange={(event) => {
               if (!searchKey) return;

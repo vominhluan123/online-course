@@ -9,7 +9,7 @@ import { DataTable } from "./data-table";
 
 const Page = async () => {
   const couponData = await getCoupon();
-  //const activeCount = couponData.filter((coupon) => coupon.active).length;
+  // const activeCount = couponData.filter((coupon) => coupon.active).length;
 
   return (
     <div className="space-y-5">

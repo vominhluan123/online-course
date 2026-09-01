@@ -1,6 +1,7 @@
 import { Plus } from "lucide-react";
 import Link from "next/link";
 
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 import { getCoupon } from "@/actions/coupon/get-coupon";
@@ -9,7 +10,7 @@ import { DataTable } from "./data-table";
 
 const Page = async () => {
   const couponData = await getCoupon();
-  //const activeCount = couponData.filter((coupon) => coupon.active).length;
+  const activeCount = couponData.filter((coupon) => coupon.active).length;
 
   return (
     <div className="space-y-5">

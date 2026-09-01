@@ -1,12 +1,20 @@
 "use client";
 
-import CouponRowAction from "@/components/coupon/CouponRowAction";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { CouponConfig } from "@/constants/coupon";
 import { formatPrice } from "@/lib/format-price";
 import { CouponTableType } from "@/types/coupon/coupon";
 import { getCouponStatus } from "@/utils/coupon-status";
 import { ColumnDef } from "@tanstack/react-table";
+import { MoreHorizontal, Pencil, Trash2 } from "lucide-react";
 
 const formatCouponValue = (type: CouponTableType["type"], value: number) => {
   if (type === "percent") return `${value}%`;
@@ -101,6 +109,8 @@ export const columns: ColumnDef<CouponTableType>[] = [
   {
     id: "actions",
     header: "Hành động",
-    cell: ({ row }) => <CouponRowAction coupon={row.original} />,
+    cell: ({ row }) => {
+      <CouponRowAction coupon={row.original} />;
+    },
   },
 ];

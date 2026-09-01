@@ -1,4 +1,4 @@
-export type CouponDiscountType = "percent" | "amount";
+export type CouponDiscountType  = "percent" | "amount";
 
 export type CouponTableType = {
   _id: string;
@@ -6,7 +6,7 @@ export type CouponTableType = {
   code: string;
   startDate: string;
   endDate: string;
-  type: CouponDiscountType;
+  type: CouponDiscountType ;
   value: number;
   active: boolean;
   maxUses: number;

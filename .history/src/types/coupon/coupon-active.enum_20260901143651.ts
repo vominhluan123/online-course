@@ -5,8 +5,6 @@ export enum CouponStatus {
   INACTIVE = "INACTIVE",
 }
 export const statusLabel = {
-  ACTIVE: "Đang hoạt động",
-  UPCOMING: "Chưa bắt đầu",
-  EXPIRED: "Đã hết hạn",
-  INACTIVE: "Đã tắt",
+  ACTIVE: "Đang Hoạt động",
+  INACTIVE: "Đã Hết Hạn",
 };

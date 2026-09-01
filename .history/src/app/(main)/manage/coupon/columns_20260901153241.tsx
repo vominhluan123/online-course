@@ -101,6 +101,8 @@ export const columns: ColumnDef<CouponTableType>[] = [
   {
     id: "actions",
     header: "Hành động",
-    cell: ({ row }) => <CouponRowAction coupon={row.original} />,
+    cell: ({ row }) => {
+      <CouponRowAction coupon={row.original} />;
+    },
   },
 ];

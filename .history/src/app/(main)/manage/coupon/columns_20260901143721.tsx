@@ -1,11 +1,10 @@
 "use client";
 
-import CouponRowAction from "@/components/coupon/CouponRowAction";
 import { Badge } from "@/components/ui/badge";
 import { CouponConfig } from "@/constants/coupon";
 import { formatPrice } from "@/lib/format-price";
+import { CouponStatus } from "@/types/coupon";
 import { CouponTableType } from "@/types/coupon/coupon";
-import { getCouponStatus } from "@/utils/coupon-status";
 import { ColumnDef } from "@tanstack/react-table";
 
 const formatCouponValue = (type: CouponTableType["type"], value: number) => {
@@ -58,13 +57,9 @@ export const columns: ColumnDef<CouponTableType>[] = [
     accessorKey: "active",
     header: "Trạng thái",
     cell: ({ row }) => {
-      const coupon = row.original;
-
-      const status = getCouponStatus(
-        coupon.active,
-        coupon.startDate,
-        coupon.endDate,
-      );
+      const status = row.original.active
+        ? CouponStatus.ACTIVE
+        : CouponStatus.INACTIVE;
 
       const config = CouponConfig[status];
 
@@ -73,7 +68,6 @@ export const columns: ColumnDef<CouponTableType>[] = [
           <span
             className={`mr-1.5 h-2 w-2 rounded-full ${config.dotClassName}`}
           />
-
           {config.label}
         </Badge>
       );
@@ -97,10 +91,5 @@ export const columns: ColumnDef<CouponTableType>[] = [
         {new Date(row.original.endDate).toLocaleDateString("vi-VN")}
       </div>
     ),
-  },
-  {
-    id: "actions",
-    header: "Hành động",
-    cell: ({ row }) => <CouponRowAction coupon={row.original} />,
   },
 ];
