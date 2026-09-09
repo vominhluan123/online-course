@@ -1,3 +1,3 @@
 export * from "./coupon";
 export * from "./coupon-active.enum";
-export * from "./update-coupon";
+export * from "./coupon-active.enum";

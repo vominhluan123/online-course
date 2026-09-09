@@ -13,7 +13,6 @@ import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
 
-import { updateCoupon } from "@/actions/coupon";
 import { createCoupon } from "@/actions/coupon/create-coupon";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -113,46 +112,16 @@ const CouponForm = ({ courses, coupon }: CouponFormProps) => {
 
   const onSubmit = async (data: CouponFormValues) => {
     try {
-      if (isEdit && coupon) {
-        const result = await updateCoupon({
-          code: coupon.code,
-          title: data.title,
-          startDate: data.startDate,
-          endDate: data.endDate,
-          type: data.type,
-          value: data.value,
-          active: data.active,
-          maxUses: data.maxUses,
-          courseId: data.courseId,
-        });
-
-        if (!result.success) {
-          toast.error(result.message);
-          return;
-        }
-
-        toast.success("Cập nhật mã giảm giá thành công");
-        router.push("/manage/coupon");
-        return;
-      }
-
       const result = await createCoupon(data);
-
       if (!result.success) {
         toast.error(result.message);
         return;
       }
-
       toast.success("Tạo mã giảm giá thành công");
       router.push("/manage/coupon");
     } catch (error) {
       console.log(error);
-
-      toast.error(
-        isEdit
-          ? "Có lỗi xảy ra khi cập nhật mã giảm giá"
-          : "Có lỗi xảy ra khi tạo mã giảm giá",
-      );
+      toast.error("Có lỗi xảy ra khi tạo mã giảm giá");
     }
   };
   const [startOpen, setStartOpen] = useState(false);

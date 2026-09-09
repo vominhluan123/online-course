@@ -113,9 +113,9 @@ const CouponForm = ({ courses, coupon }: CouponFormProps) => {
 
   const onSubmit = async (data: CouponFormValues) => {
     try {
-      if (isEdit && coupon) {
+      if (isEdit) {
         const result = await updateCoupon({
-          code: coupon.code,
+          code: data.code,
           title: data.title,
           startDate: data.startDate,
           endDate: data.endDate,

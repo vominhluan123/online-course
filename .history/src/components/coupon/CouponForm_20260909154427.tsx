@@ -113,9 +113,9 @@ const CouponForm = ({ courses, coupon }: CouponFormProps) => {
 
   const onSubmit = async (data: CouponFormValues) => {
     try {
-      if (isEdit && coupon) {
+      if (isEdit) {
         const result = await updateCoupon({
-          code: coupon.code,
+          code: data.code,
           title: data.title,
           startDate: data.startDate,
           endDate: data.endDate,
@@ -158,7 +158,6 @@ const CouponForm = ({ courses, coupon }: CouponFormProps) => {
   const [startOpen, setStartOpen] = useState(false);
   const [endOpen, setEndOpen] = useState(false);
   const startDate = form.watch("startDate");
-  const isEdit = !!coupon; // chuyển thành boolea, isEdit là true nếu đang Edit, false nếu đang Create.
   return (
     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
       <FieldGroup>

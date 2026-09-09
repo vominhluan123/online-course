@@ -1,0 +1,16 @@
+import { ConnectToDatabase } from "@/lib/db";
+import { Coupon } from "@/lib/db/models/coupon.model";
+import { UpdateCouponParams } from "@/types/coupon/update-coupon";
+
+export async function updateCoupon(params: UpdateCouponParams) {
+  await ConnectToDatabase();
+  const coupon = await Coupon.findOne({
+    code: params.code,
+  });
+  if (!coupon) {
+    return {
+      success: false,
+      message: "Không tìm thấy coupon",
+    };
+  }
+}
