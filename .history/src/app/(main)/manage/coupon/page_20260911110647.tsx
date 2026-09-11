@@ -4,7 +4,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 import { getCoupon } from "@/actions/coupon/get-coupon";
-import { RefreshButton } from "@/components/ui/RefreshButton";
 import { columns } from "./columns";
 import { DataTable } from "./data-table";
 

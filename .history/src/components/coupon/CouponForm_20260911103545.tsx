@@ -171,7 +171,7 @@ const CouponForm = ({ courses, coupon }: CouponFormProps) => {
   const startDate = form.watch("startDate");
   const isEdit = !!coupon; // chuyển thành boolea, isEdit là true nếu đang Edit, false nếu đang Create.
   return (
-    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6" >
+    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
       <FieldGroup>
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
           <Controller
@@ -243,9 +243,6 @@ const CouponForm = ({ courses, coupon }: CouponFormProps) => {
                       mode="single"
                       selected={field.value}
                       onSelect={(date) => {
-                        if (!date) return;
-
-                        date.setHours(0, 0, 0, 0);
                         field.onChange(date);
                         setStartOpen(false);
                       }}
@@ -258,7 +255,7 @@ const CouponForm = ({ courses, coupon }: CouponFormProps) => {
                             variant="outline"
                             className="w-full"
                             onClick={() => {
-                              field.onChange(today);
+                             field.onChange(today);
                             }}
                           >
                             Hôm nay
@@ -305,8 +302,6 @@ const CouponForm = ({ courses, coupon }: CouponFormProps) => {
                       mode="single"
                       selected={field.value}
                       onSelect={(date) => {
-                        if (!date) return;
-
                         field.onChange(date);
                         setEndOpen(false);
                       }}

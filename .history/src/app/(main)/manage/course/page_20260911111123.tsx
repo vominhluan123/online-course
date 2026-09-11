@@ -37,7 +37,7 @@ const page = async () => {
     <div className="space-y-5">
       <div className="flex items-center justify-end">
         <div className="flex items-center gap-2">
-          <RefreshButton />
+          <RefreshButton></RefreshButton>
           <Link href="/manage/course/trash">
             <Button variant="outline" className="relative">
               Thùng rác

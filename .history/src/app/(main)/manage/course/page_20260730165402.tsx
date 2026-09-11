@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 
 import Link from "next/link";
 
-import { RefreshButton } from "@/components/ui/RefreshButton";
 import { columns } from "./columns";
 import { DataTable } from "./data-table";
 
@@ -37,7 +36,6 @@ const page = async () => {
     <div className="space-y-5">
       <div className="flex items-center justify-end">
         <div className="flex items-center gap-2">
-          <RefreshButton />
           <Link href="/manage/course/trash">
             <Button variant="outline" className="relative">
               Thùng rác
@@ -57,6 +55,7 @@ const page = async () => {
               )}
             </Button>
           </Link>
+
           <Link href="/manage/course/new">
             <Button>Tạo khóa học</Button>
           </Link>

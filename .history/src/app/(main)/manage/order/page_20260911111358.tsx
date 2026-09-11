@@ -1,7 +1,7 @@
 import { getAllOrders } from "@/actions/order/get-order";
-import { RefreshButton } from "@/components/ui/RefreshButton";
 import { columns } from "./columns";
 import { DataTable } from "./data-table";
+import { RefreshButton } from "@/components/ui/RefreshButton";
 
 const page = async () => {
   const orders = await getAllOrders();
@@ -27,9 +27,7 @@ const page = async () => {
 
   return (
     <div className="space-y-5">
-      <div className="flex items-center justify-end">
-        <RefreshButton />
-      </div>
+      <div className="flex items-center justify-end"><RefreshButton/></div>
       <DataTable columns={columns} data={data} searchKey="code" />
     </div>
   );

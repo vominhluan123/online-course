@@ -89,8 +89,6 @@ const formSchema = z
 type CouponFormValues = z.infer<typeof formSchema>;
 const CouponForm = ({ courses, coupon }: CouponFormProps) => {
   const router = useRouter();
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
   const form = useForm<CouponFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: coupon
@@ -114,7 +112,7 @@ const CouponForm = ({ courses, coupon }: CouponFormProps) => {
   });
 
   const {
-    formState: { isSubmitting, isDirty },
+    formState: { isSubmitting },
   } = form;
 
   const onSubmit = async (data: CouponFormValues) => {
@@ -126,7 +124,7 @@ const CouponForm = ({ courses, coupon }: CouponFormProps) => {
           code: coupon.code,
           title: data.title,
           startDate: data.startDate,
-          endDate,
+          endDate: data.endDate,
           type: data.type,
           value: data.value,
           active: data.active,
@@ -171,7 +169,7 @@ const CouponForm = ({ courses, coupon }: CouponFormProps) => {
   const startDate = form.watch("startDate");
   const isEdit = !!coupon; // chuyển thành boolea, isEdit là true nếu đang Edit, false nếu đang Create.
   return (
-    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6" >
+    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
       <FieldGroup>
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
           <Controller
@@ -243,13 +241,9 @@ const CouponForm = ({ courses, coupon }: CouponFormProps) => {
                       mode="single"
                       selected={field.value}
                       onSelect={(date) => {
-                        if (!date) return;
-
-                        date.setHours(0, 0, 0, 0);
                         field.onChange(date);
                         setStartOpen(false);
                       }}
-                      disabled={(date) => date < today}
                       locale={vi}
                       footer={
                         <div className="border-t p-3">
@@ -258,7 +252,8 @@ const CouponForm = ({ courses, coupon }: CouponFormProps) => {
                             variant="outline"
                             className="w-full"
                             onClick={() => {
-                              field.onChange(today);
+                              field.onChange(new Date());
+                              setStartOpen(false);
                             }}
                           >
                             Hôm nay
@@ -286,7 +281,6 @@ const CouponForm = ({ courses, coupon }: CouponFormProps) => {
                     <Button
                       type="button"
                       variant="outline"
-                      disabled={!startDate}
                       className={cn(
                         "justify-between font-normal",
                         !field.value && "text-muted-foreground",
@@ -305,19 +299,11 @@ const CouponForm = ({ courses, coupon }: CouponFormProps) => {
                       mode="single"
                       selected={field.value}
                       onSelect={(date) => {
-                        if (!date) return;
-
                         field.onChange(date);
                         setEndOpen(false);
                       }}
                       locale={vi}
-                      disabled={(date) => {
-                        if (startDate && date < startDate) {
-                          return true;
-                        }
-
-                        return false;
-                      }}
+                      disabled={(date) => startDate && date < startDate}
                     />
                   </PopoverContent>
                 </Popover>
@@ -446,11 +432,7 @@ const CouponForm = ({ courses, coupon }: CouponFormProps) => {
       </FieldGroup>
 
       <div className="flex justify-end">
-        <Button
-          type="submit"
-          variant="custom"
-          disabled={isSubmitting || (isEdit && !isDirty)}
-        >
+        <Button type="submit" variant="custom" disabled={isSubmitting}>
           {isSubmitting ? (
             <>
               <Spinner data-icon="inline-start" />

@@ -171,7 +171,7 @@ const CouponForm = ({ courses, coupon }: CouponFormProps) => {
   const startDate = form.watch("startDate");
   const isEdit = !!coupon; // chuyển thành boolea, isEdit là true nếu đang Edit, false nếu đang Create.
   return (
-    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6" >
+    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6" dis>
       <FieldGroup>
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
           <Controller
