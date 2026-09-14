@@ -28,7 +28,7 @@ const statuses = [
   CourseStatus.PENDING,
   CourseStatus.APPROVED,
   CourseStatus.REJECTED,
-  CourseStatus.UPDATING,
+  CourseStatus.
 ];
 
 const CourseStatusDropdown = ({ course }: Props) => {
